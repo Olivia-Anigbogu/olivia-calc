@@ -111,7 +111,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: ./
-          server-dir: /home/${{ secrets.FTP_USERNAME }}/public_html/
+          server-dir: /home/anigbogu.vudse26.cloud/public_html/
           exclude: |
             **/.git*
             **/.git*/**
