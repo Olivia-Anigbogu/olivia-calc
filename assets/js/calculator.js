@@ -23,22 +23,22 @@
  * @returns {number}
  */
 function evaluate(expression) {
-  if (typeof expression !== 'string' || expression.trim() === '') {
-    throw new Error('Empty expression');
+  if (typeof expression !== "string" || expression.trim() === "") {
+    throw new Error("Empty expression");
   }
 
   // Reject anything that isn't digits, operators, dots, or whitespace.
   // This prevents arbitrary code execution from eval().
   if (!/^[\d\s+\-*/.]+$/.test(expression)) {
-    throw new Error('Invalid characters in expression');
+    throw new Error("Invalid characters in expression");
   }
 
   // Use Function constructor instead of eval — slightly safer scope.
   // eslint-disable-next-line no-new-func
-  const result = new Function('return ' + expression)();
+  const result = new Function("return " + expression)();
 
-  if (typeof result !== 'number' || !isFinite(result)) {
-    throw new Error('Invalid result');
+  if (typeof result !== "number" || !isFinite(result)) {
+    throw new Error("Invalid result");
   }
 
   return result;
@@ -81,7 +81,7 @@ function isPrime(n) {
  * @returns {string}
  */
 function formatResult(num) {
-  if (!isFinite(num)) return 'Error';
+  if (!isFinite(num)) return "Error";
   // parseFloat removes trailing zeros; toPrecision caps length
   const str = parseFloat(num.toPrecision(10)).toString();
   return str;
@@ -91,29 +91,29 @@ function formatResult(num) {
 // UI STATE  (browser only)
 // ──────────────────────────────────────────────────────────────
 
-let currentExpression = '';
+let currentExpression = "";
 
 function updateDisplay() {
-  const el = document.getElementById('expr');
-  const val = currentExpression || '0';
+  const el = document.getElementById("expr");
+  const val = currentExpression || "0";
   el.textContent = val;
 
   // Resize text when the string gets long
-  el.classList.toggle('long',  val.length > 12);
-  el.classList.toggle('xlong', val.length > 18);
-  el.classList.toggle('error', val === 'Error');
+  el.classList.toggle("long", val.length > 12);
+  el.classList.toggle("xlong", val.length > 18);
+  el.classList.toggle("error", val === "Error");
 }
 
 function hidePrimeBanner() {
-  const banner = document.getElementById('prime-banner');
-  banner.className = 'prime-banner';
-  banner.textContent = '';
+  const banner = document.getElementById("prime-banner");
+  banner.className = "prime-banner";
+  banner.textContent = "";
 }
 
 function showPrimeBanner(text, type) {
-  const banner = document.getElementById('prime-banner');
+  const banner = document.getElementById("prime-banner");
   banner.textContent = text;
-  banner.className   = 'prime-banner show' + (type ? ' ' + type : '');
+  banner.className = "prime-banner show" + (type ? " " + type : "");
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -121,12 +121,12 @@ function showPrimeBanner(text, type) {
 // ──────────────────────────────────────────────────────────────
 
 function appendVal(v) {
-  if (currentExpression === 'Error') currentExpression = '';
+  if (currentExpression === "Error") currentExpression = "";
   // Prevent multiple decimal points in the current number segment
-  if (v === '.') {
+  if (v === ".") {
     const segments = currentExpression.split(/[+\-*/]/);
     const last = segments[segments.length - 1];
-    if (last.includes('.')) return;
+    if (last.includes(".")) return;
   }
   currentExpression += v;
   hidePrimeBanner();
@@ -134,11 +134,11 @@ function appendVal(v) {
 }
 
 function appendOp(op) {
-  if (currentExpression === 'Error') currentExpression = '';
-  if (currentExpression === '') return;               // no leading operator
+  if (currentExpression === "Error") currentExpression = "";
+  if (currentExpression === "") return; // no leading operator
   // Replace trailing operator rather than stack them
   const last = currentExpression.slice(-1);
-  if (['+', '-', '*', '/'].includes(last)) {
+  if (["+", "-", "*", "/"].includes(last)) {
     currentExpression = currentExpression.slice(0, -1);
   }
   currentExpression += op;
@@ -147,14 +147,14 @@ function appendOp(op) {
 }
 
 function clearResult() {
-  currentExpression = '';
+  currentExpression = "";
   hidePrimeBanner();
   updateDisplay();
 }
 
 function backspace() {
-  if (currentExpression === 'Error') {
-    currentExpression = '';
+  if (currentExpression === "Error") {
+    currentExpression = "";
   } else {
     currentExpression = currentExpression.slice(0, -1);
   }
@@ -163,14 +163,14 @@ function backspace() {
 }
 
 function calculate() {
-  if (!currentExpression || currentExpression === 'Error') return;
+  if (!currentExpression || currentExpression === "Error") return;
   try {
     const result = evaluate(currentExpression);
     currentExpression = formatResult(result);
     hidePrimeBanner();
     updateDisplay();
   } catch {
-    currentExpression = 'Error';
+    currentExpression = "Error";
     updateDisplay();
   }
 }
@@ -181,19 +181,19 @@ function calculate() {
  * and shows a clear result banner.
  */
 function checkPrime() {
-  if (!currentExpression || currentExpression === 'Error') {
-    showPrimeBanner('⚠ Enter a number first', 'error');
+  if (!currentExpression || currentExpression === "Error") {
+    showPrimeBanner("⚠ Enter a number first", "error");
     return;
   }
   const num = Number(currentExpression);
   if (!Number.isInteger(num) || num < 0) {
-    showPrimeBanner('⚠ Enter a whole number ≥ 0', 'error');
+    showPrimeBanner("⚠ Enter a whole number ≥ 0", "error");
     return;
   }
   if (isPrime(num)) {
-    showPrimeBanner(`✓ ${num} is a PRIME number`, '');
+    showPrimeBanner(`✓ ${num} is a PRIME number`, "");
   } else {
-    showPrimeBanner(`✗ ${num} is NOT a prime number`, 'not-prime');
+    showPrimeBanner(`✗ ${num} is NOT a prime number`, "not-prime");
   }
 }
 
@@ -202,4 +202,7 @@ function checkPrime() {
 // ──────────────────────────────────────────────────────────────
 
 // Export pure functions for Jest (ES module syntax)
-export { evaluate, isPrime, formatResult };
+// Export pure functions for Jest (Node only — skipped in browser)
+if (typeof module !== "undefined") {
+  module.exports = { evaluate, isPrime, formatResult };
+}
