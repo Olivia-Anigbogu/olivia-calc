@@ -95,6 +95,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/olivia-calculator:latest
 
   # ── Job 5: Deploy via FTPS ────────────────────────────────
+  # ── Job 5: Deploy via FTPS ────────────────────────────────
   deploy:
     name: Deploy to VPS
     runs-on: ubuntu-latest
@@ -118,9 +119,11 @@ jobs:
             **/node_modules/**
             **/tests/**
             **/coverage/**
+            .github/**
             Dockerfile
             eslint.config.cjs
             package*.json
+          dangerous-clean-slate: true
 
   # ── Job 6: Verify Deployment ──────────────────────────────
   verify:
