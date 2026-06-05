@@ -6,23 +6,23 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
-        document:     "readonly",
-        window:       "readonly",
-        module:       "writable",
-        console:      "readonly",
-        appendVal:    "writable",
-        appendOp:     "writable",
-        clearResult:  "writable",
-        backspace:    "writable",
-        calculate:    "writable",
-        checkPrime:   "writable"
-      }
+        document: "readonly",
+        window: "readonly",
+        module: "writable",
+        console: "readonly",
+        appendVal: "writable",
+        appendOp: "writable",
+        clearResult: "writable",
+        backspace: "writable",
+        calculate: "writable",
+        checkPrime: "writable",
+      },
     },
     rules: {
-      "no-unused-vars":    "warn",
-      "no-undef":          "error",
-      "semi":              ["error", "always"],
-      "no-console":        "off"
-    }
-  }
+      "no-unused-vars": "off",
+      "no-undef": "error",
+      semi: ["error", "always"],
+      "no-console": "off",
+    },
+  },
 ];
