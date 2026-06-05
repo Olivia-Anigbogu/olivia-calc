@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Olivia's Calculator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/calculator.css" />
 </head>
+
 <body>
 
   <div class="wrapper">
 
     <!-- Header -->
     <header class="header">
-      <div class="header-name">Olivia Nneka Anigbogu</div>
+      <div class="header-name">400 level department of software engineering class of 2025/2026 calculator</div>
       <div class="header-sub">SEN 482 · Calculator</div>
     </header>
 
@@ -35,31 +39,31 @@
         <!-- Row 1: AC  ←  PRIME  ÷ -->
         <button class="btn btn-action" onclick="clearResult()">AC</button>
         <button class="btn btn-action" onclick="backspace()">⌫</button>
-        <button class="btn btn-prime"  onclick="checkPrime()">PRIME?</button>
-        <button class="btn btn-op"     onclick="appendOp('/')">÷</button>
+        <button class="btn btn-prime" onclick="checkPrime()">PRIME?</button>
+        <button class="btn btn-op" onclick="appendOp('/')">÷</button>
 
         <!-- Row 2: 7  8  9  × -->
         <button class="btn btn-num" onclick="appendVal('7')">7</button>
         <button class="btn btn-num" onclick="appendVal('8')">8</button>
         <button class="btn btn-num" onclick="appendVal('9')">9</button>
-        <button class="btn btn-op"  onclick="appendOp('*')">×</button>
+        <button class="btn btn-op" onclick="appendOp('*')">×</button>
 
         <!-- Row 3: 4  5  6  − -->
         <button class="btn btn-num" onclick="appendVal('4')">4</button>
         <button class="btn btn-num" onclick="appendVal('5')">5</button>
         <button class="btn btn-num" onclick="appendVal('6')">6</button>
-        <button class="btn btn-op"  onclick="appendOp('-')">−</button>
+        <button class="btn btn-op" onclick="appendOp('-')">−</button>
 
         <!-- Row 4: 1  2  3  + -->
         <button class="btn btn-num" onclick="appendVal('1')">1</button>
         <button class="btn btn-num" onclick="appendVal('2')">2</button>
         <button class="btn btn-num" onclick="appendVal('3')">3</button>
-        <button class="btn btn-op"  onclick="appendOp('+')">+</button>
+        <button class="btn btn-op" onclick="appendOp('+')">+</button>
 
         <!-- Row 5: .  0  (span 2)  = -->
         <button class="btn btn-num" onclick="appendVal('.')">.</button>
         <button class="btn btn-num btn-zero" onclick="appendVal('0')">0</button>
-        <button class="btn btn-eq"  onclick="calculate()">=</button>
+        <button class="btn btn-eq" onclick="calculate()">=</button>
 
       </div>
     </div>
@@ -68,4 +72,5 @@
 
   <script src="assets/js/calculator.js"></script>
 </body>
+
 </html>
