@@ -1,32 +1,38 @@
 /* ============================================================
    Olivia Nneka Anigbogu — SEN 482 Calculator
-   Aesthetic: light, clean, minimal
+   Aesthetic: dark editorial, monospaced display, clean grid
    ============================================================ */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
-  --bg:          #f0f2f5;
-  --surface:     #ffffff;
-  --border:      #e0e0e0;
-  --num-bg:      #f5f5f5;
-  --num-hover:   #ebebeb;
-  --op-bg:       #e8f0fe;
-  --op-hover:    #d2e3fc;
-  --op-color:    #1a73e8;
-  --ac-bg:       #fce8e8;
-  --ac-color:    #d93025;
-  --eq-bg:       #1a73e8;
-  --eq-hover:    #1557b0;
-  --prime-bg:    #e6f4ea;
-  --prime-color: #137333;
-  --prime-hover: #ceead6;
-  --text:        #202124;
-  --muted:       #999;
-  --display-font: 'DM Mono', monospace;
-  --ui-font:      'DM Sans', sans-serif;
-  --radius:      12px;
-  --gap:         8px;
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --num-bg: #242424;
+  --num-hover: #2e2e2e;
+  --op-bg: #1e2a3a;
+  --op-hover: #243348;
+  --op-color: #5b9cf6;
+  --ac-bg: #2a1a1a;
+  --ac-color: #f87171;
+  --eq-bg: #5b9cf6;
+  --eq-hover: #4a87e0;
+  --prime-bg: #1a2a1a;
+  --prime-color: #4ade80;
+  --prime-hover: #243b24;
+  --text: #f0f0f0;
+  --muted: #666;
+  --display-font: "DM Mono", monospace;
+  --ui-font: "DM Sans", sans-serif;
+  --radius: 12px;
+  --gap: 8px;
 }
 
 body {
@@ -76,12 +82,12 @@ body {
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* ── Display ── */
 .display-wrap {
-  background: #f8f9fa;
+  background: #111;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px 20px;
@@ -105,8 +111,12 @@ body {
 }
 
 /* Shrink text when it gets long */
-.display-expr.long  { font-size: 1.6rem; }
-.display-expr.xlong { font-size: 1.2rem; }
+.display-expr.long {
+  font-size: 1.6rem;
+}
+.display-expr.xlong {
+  font-size: 1.2rem;
+}
 
 /* ── Prime Banner ── */
 .prime-banner {
@@ -114,7 +124,7 @@ body {
   align-items: center;
   gap: 8px;
   background: var(--prime-bg);
-  border: 1px solid #a8d5b5;
+  border: 1px solid #2d4a2d;
   border-radius: 10px;
   padding: 10px 14px;
   margin-bottom: 12px;
@@ -125,23 +135,29 @@ body {
   animation: fadeIn 0.25s ease;
 }
 
-.prime-banner.show { display: flex; }
-
-.prime-banner.not-prime {
-  background: #fef3e2;
-  border-color: #f9ab00;
-  color: #e37400;
+.prime-banner.show {
+  display: flex;
 }
-
+.prime-banner.not-prime {
+  background: #2a1e1a;
+  border-color: #4a2e1a;
+  color: #fb923c;
+}
 .prime-banner.error {
-  background: #fce8e8;
-  border-color: #f28b82;
-  color: #d93025;
+  background: #2a1a1a;
+  border-color: #4a1a1a;
+  color: #f87171;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Button Grid ── */
@@ -160,23 +176,32 @@ body {
   font-weight: 600;
   height: 64px;
   cursor: pointer;
-  transition: background 0.12s ease, transform 0.08s ease, box-shadow 0.12s ease;
+  transition:
+    background 0.12s ease,
+    transform 0.08s ease,
+    box-shadow 0.12s ease;
   position: relative;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn:active { transform: scale(0.94); }
+.btn:active {
+  transform: scale(0.94);
+}
 
 /* Number buttons */
 .btn-num {
   background: var(--num-bg);
   color: var(--text);
 }
-.btn-num:hover { background: var(--num-hover); }
+.btn-num:hover {
+  background: var(--num-hover);
+}
 
 /* Zero spans 2 cols */
-.btn-zero { grid-column: span 2; }
+.btn-zero {
+  grid-column: span 2;
+}
 
 /* Operator buttons */
 .btn-op {
@@ -184,14 +209,18 @@ body {
   color: var(--op-color);
   font-size: 1.2rem;
 }
-.btn-op:hover { background: var(--op-hover); }
+.btn-op:hover {
+  background: var(--op-hover);
+}
 
 /* AC / backspace */
 .btn-action {
   background: var(--ac-bg);
   color: var(--ac-color);
 }
-.btn-action:hover { background: #fad2cf; }
+.btn-action:hover {
+  background: #331f1f;
+}
 
 /* Prime button */
 .btn-prime {
@@ -199,27 +228,36 @@ body {
   color: var(--prime-color);
   font-size: 0.78rem;
   letter-spacing: 0.04em;
-  border: 1px solid #a8d5b5;
+  border: 1px solid #2d4a2d;
 }
-.btn-prime:hover { background: var(--prime-hover); }
+.btn-prime:hover {
+  background: var(--prime-hover);
+}
 
 /* Equals */
 .btn-eq {
   background: var(--eq-bg);
   color: #fff;
   font-size: 1.3rem;
-  box-shadow: 0 4px 20px rgba(26,115,232,0.25);
+  box-shadow: 0 4px 20px rgba(91, 156, 246, 0.35);
 }
 .btn-eq:hover {
   background: var(--eq-hover);
-  box-shadow: 0 6px 24px rgba(26,115,232,0.35);
+  box-shadow: 0 6px 24px rgba(91, 156, 246, 0.45);
 }
 
 /* ── Error state on display ── */
-.display-expr.error { color: #d93025; }
+.display-expr.error {
+  color: #f87171;
+}
 
 /* ── Responsive ── */
 @media (max-width: 400px) {
-  .btn { height: 58px; font-size: 0.95rem; }
-  .display-expr { font-size: 1.9rem; }
+  .btn {
+    height: 58px;
+    font-size: 0.95rem;
+  }
+  .display-expr {
+    font-size: 1.9rem;
+  }
 }
