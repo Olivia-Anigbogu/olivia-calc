@@ -203,6 +203,5 @@ function checkPrime() {
 
 // Export pure functions for Jest (ES module syntax)
 // Export pure functions for Jest (Node only — skipped in browser)
-if (typeof module !== "undefined") {
-  module.exports = { evaluate, isPrime, formatResult };
-}
+// Export pure functions for Jest (Node only — skipped in browser)
+export { evaluate, isPrime, formatResult };
