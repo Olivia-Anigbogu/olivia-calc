@@ -97,14 +97,7 @@ jobs:
   # ── Job 5: Deploy via FTPS ────────────────────────────────
   # ── Job 5: Deploy via FTPS ────────────────────────────────
   deploy:
-    name: Deploy to VPS
-    runs-on: ubuntu-latest
-    needs: docker
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy via FTPS
+    - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -112,7 +105,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: ./
-          server-dir: /home/anigbogu.vudse26.cloud/public_html/
+          server-dir: /
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
