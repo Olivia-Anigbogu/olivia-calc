@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm install
 
-COPY assets/js/calculator.js  assets/js/calculator.js
+COPY calculator/assets/js/calculator.js  calculator/assets/js/calculator.js
 COPY eslint.config.cjs         eslint.config.cjs
 COPY tests/                    tests/
 
@@ -18,8 +18,12 @@ FROM nginx:alpine AS serve
 
 RUN rm -rf /usr/share/nginx/html/*
 
+# Homepage (root)
 COPY index.html                          /usr/share/nginx/html/
-COPY assets/css/calculator.css           /usr/share/nginx/html/assets/css/
-COPY --from=ci /app/assets/js/calculator.js  /usr/share/nginx/html/assets/js/
+
+# Calculator (subfolder)
+COPY calculator/index.html               /usr/share/nginx/html/calculator/index.html
+COPY calculator/assets/css/calculator.css /usr/share/nginx/html/calculator/assets/css/
+COPY --from=ci /app/calculator/assets/js/calculator.js  /usr/share/nginx/html/calculator/assets/js/
 
 EXPOSE 80
