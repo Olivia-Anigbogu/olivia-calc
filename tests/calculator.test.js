@@ -4,7 +4,7 @@
 // Covers: evaluate(), isPrime(), formatResult()
 // ============================================================
 
-import { evaluate, isPrime, formatResult } from '../assets/js/calculator.js';
+import { evaluate, isPrime, formatResult } from '../calculator/assets/js/calculator.js';
 
 // ────────────────────────────────────────────────────────────
 // evaluate() — arithmetic expression evaluator

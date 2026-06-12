@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "SEN 482 Calculator — Olivia Nneka Anigbogu",
   "type": "module",
-  "main": "assets/js/calculator.js",
+  "main": "calculator/assets/js/calculator.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "lint": "eslint assets/js/calculator.js"
+    "lint": "eslint calculator/assets/js/calculator.js"
   },
   "jest": {
     "testEnvironment": "node",
